@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+signal enemy_died
+
+export var max_health = 1
+onready var health = max_health setget set_health
+
+func set_health(value):
+	health = clamp(value, 0, max_health)
+	if health == 0:
+		emit_signal(\"enemy_died\")
+"
+
+[node name="EnemyStats" type="Node"]
+script = SubResource( 1 )
